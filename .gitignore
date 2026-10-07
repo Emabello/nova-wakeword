@@ -1,0 +1,19 @@
+# Mai nel repository pubblico
+local.properties
+.env
+*.keystore
+*.jks
+token
+# Audio: registrazioni e clip generate restano fuori
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.m4a
+# Dati e modelli scaricati/prodotti dalla Action
+data/
+voices/
+out/
+*.onnx
+*.npy
+__pycache__/
