@@ -15,7 +15,7 @@ verificatore personale, addestrato sul posto).
 
 | File | Cosa fa |
 |---|---|
-| `fetch_data.sh` | voci Piper (3 italiane + LibriTTS-R inglese), risposte all'impulso MIT, un'ora di FMA, feature negative |
+| `fetch_data.sh` | voci Piper (3 italiane + LibriTTS-R inglese), risposte all'impulso MIT, rumori ambientali ESC-50, feature negative |
 | `trim_npy.py` | scarica solo ~4 GB dei 17 GB di feature negative (download parziale + intestazione .npy corretta) |
 | `generate_clips.py` | clip positive ("ehi nova") e negative con suoni vicini ("ehi Nina", "nove", "nuova"…) |
 | `config_ehi_nova.yml` | configurazione per `openwakeword.train` |
