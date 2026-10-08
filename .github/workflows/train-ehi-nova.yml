@@ -7,7 +7,7 @@ on:
     inputs:
       steps:
         description: "Passi di addestramento"
-        default: "30000"
+        default: "50000"
 
 jobs:
   train:
@@ -37,15 +37,16 @@ jobs:
       - name: Dati
         run: ./fetch_data.sh
       - name: Clip sintetiche (voci italiane + inglesi)
-        run: python generate_clips.py --voices voices --out out/ehi_nova --n 6000 --n-val 1000
+        run: python generate_clips.py --voices voices --out out/ehi_nova --n 10000 --n-val 2000
       - name: Augmentation e feature
-        run: python -m openwakeword.train --training_config config_ehi_nova.yml --augment_clips
+        run: python -c "import logging,runpy,sys; logging.basicConfig(level=logging.INFO); sys.argv=['train','--training_config','config_ehi_nova.yml','--augment_clips']; runpy.run_module('openwakeword.train', run_name='__main__')"
       - name: Addestramento
         run: |
           sed -i "s/^steps: .*/steps: ${{ github.event.inputs.steps }}/" config_ehi_nova.yml
           # La conversione finale in TFLite richiede TensorFlow e a Nova non serve (usa ONNX):
           # il passo è riuscito se il modello ONNX c'è
-          python -m openwakeword.train --training_config config_ehi_nova.yml --train_model || true
+          # logging INFO: così il log riporta accuratezza, recall e falsi positivi all'ora del modello finale
+          python -c "import logging,runpy,sys; logging.basicConfig(level=logging.INFO); sys.argv=['train','--training_config','config_ehi_nova.yml','--train_model']; runpy.run_module('openwakeword.train', run_name='__main__')" || true
           test -s out/ehi_nova.onnx
       - uses: actions/upload-artifact@v4
         with:

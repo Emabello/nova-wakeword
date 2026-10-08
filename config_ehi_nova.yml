@@ -2,8 +2,8 @@
 model_name: "ehi_nova"
 target_phrase: ["ehi nova"]
 custom_negative_phrases: []
-n_samples: 6000
-n_samples_val: 1000
+n_samples: 10000
+n_samples_val: 2000
 tts_batch_size: 50
 augmentation_batch_size: 16
 piper_sample_generator_path: "./piper_stub"
@@ -21,6 +21,6 @@ batch_n_per_class:
   "positive": 50
 model_type: "dnn"
 layer_size: 32
-steps: 30000
+steps: 50000
 max_negative_weight: 1500
 target_false_positives_per_hour: 0.2

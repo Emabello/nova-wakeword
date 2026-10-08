@@ -13,8 +13,8 @@ for v in it/it_IT/paola/medium/it_IT-paola-medium it/it_IT/riccardo/x_low/it_IT-
 done
 
 curl -sSfL -o data/validation_set_features.npy "$HF/datasets/davidscripka/openwakeword_features/resolve/main/validation_set_features.npy"
-# ~4 GB delle 2000 ore di feature negative (1,3 milioni di finestre su 5,6): entra nel disco della Action
-python trim_npy.py "$HF/datasets/davidscripka/openwakeword_features/resolve/main/openwakeword_features_ACAV100M_2000_hrs_16bit.npy" data/negative_features.npy 1300000
+# ~8 GB delle 2000 ore di feature negative (2,6 milioni di finestre su 5,6): entra nel disco della Action dopo la pulizia
+python trim_npy.py "$HF/datasets/davidscripka/openwakeword_features/resolve/main/openwakeword_features_ACAV100M_2000_hrs_16bit.npy" data/negative_features.npy 2600000
 
 python - <<'PY'
 # Risposte all'impulso (MIT) e rumori di fondo (ESC-50) per l'augmentation, a 16 kHz
