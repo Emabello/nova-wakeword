@@ -6,7 +6,7 @@ n_samples: 6000
 n_samples_val: 1000
 tts_batch_size: 50
 augmentation_batch_size: 16
-piper_sample_generator_path: "./unused"
+piper_sample_generator_path: "./piper_stub"
 output_dir: "./out"
 rir_paths: ["./data/mit_rirs"]
 background_paths: ["./data/background"]
